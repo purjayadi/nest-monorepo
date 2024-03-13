@@ -17,6 +17,7 @@
     "paths": {
       "@tech-sharing/account-schema": ["libs/account-schema/src/index.ts"],
       "@tech-sharing/member-schema": ["libs/member-schema/src/index.ts"],
+      "@tech-sharing/my-nest-lib": ["libs/my-nest-lib/src/index.ts"],
       "@tech-sharing/shared": ["libs/shared/src/index.ts"]
     }
   },

@@ -30,7 +30,8 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "api-gateway:build"
+        "buildTarget": "api-gateway:build",
+        "waitUntilTargets": ["account-service:serve"]
       },
       "configurations": {
         "development": {
