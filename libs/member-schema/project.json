@@ -1,0 +1,40 @@
+{
+  "name": "member-schema",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/member-schema/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/member-schema/jest.config.ts"
+      }
+    },
+    "generate": {
+      "command": "prisma generate --schema ./src/schema/schema.prisma",
+      "options": {
+        "cwd": "libs/member-schema"
+      }
+    },
+    "migrate": {
+      "builder": "@nx/workspace:run-commands",
+      "command": "prisma migrate dev --schema ./src/schema/schema.prisma",
+      "options": {
+        "cwd": "libs/member-schema"
+      }
+    },
+    "deploy": {
+      "builder": "@nx/workspace:run-commands",
+      "command": "prisma migrate deploy --schema ./src/schema/schema.prisma",
+      "options": {
+        "cwd": "libs/member-schema"
+      }
+    }
+  },
+  "tags": []
+}

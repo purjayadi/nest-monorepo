@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@tech-sharing/account-schema": ["libs/account-schema/src/index.ts"],
+      "@tech-sharing/member-schema": ["libs/member-schema/src/index.ts"],
+      "@tech-sharing/shared": ["libs/shared/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

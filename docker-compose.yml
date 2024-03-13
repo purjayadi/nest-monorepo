@@ -1,0 +1,51 @@
+version: '3'
+services:
+  dev:
+    container_name: tech-sharing-dev
+    image: tech-sharing-dev-image:1.0.0
+    labels:
+      - io.portainer.accesscontrol.public
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    environment:
+      - NODE_ENV=development
+    command: sh -c "yarn account:dev && yarn gateway:dev"
+    networks:
+      - tech-sharing-network
+  prd:
+    container_name: tech-sharing-prd
+    image: tech-sharing-prd-image:1.0.0
+    labels:
+      - io.portainer.accesscontrol.public
+    build:
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '3000:3000'
+    command: > 
+      sh -c "yarn account:prd 
+      && yarn gateway:prd"
+    networks:
+      - tech-sharing-network
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    volumes:
+      - /var/lib/rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    env_file:
+      - ./rabbitmq.env
+    networks:
+      - tech-sharing-network
+
+networks:
+  tech-sharing-network:
+    external: true
