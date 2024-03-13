@@ -8,7 +8,6 @@ export class CreateAccountDto {
   name: string;
 
   @IsEmail()
-  @IsString()
   @ApiProperty()
   email: string;
 
